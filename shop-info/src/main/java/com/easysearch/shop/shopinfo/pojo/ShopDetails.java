@@ -26,4 +26,5 @@ public class ShopDetails {
 	private String shopCity;
 	private long ownerId;
 	
+	
 }

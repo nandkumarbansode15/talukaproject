@@ -7,5 +7,7 @@ import com.easysearch.taluka.pojo.Taluka;
 
 @Repository
 public interface TalukaDao extends MongoRepository<Taluka, Integer>{
+	
+	public Taluka findByName(String name);
 
 }
