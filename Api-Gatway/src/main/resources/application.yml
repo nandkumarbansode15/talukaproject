@@ -1,0 +1,46 @@
+server:
+  port: 9191
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: OWNER-INFO-SERVICE
+          uri: lb://OWNER-INFO-SERVICE
+          predicates:
+            - Path=/customer/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: OWNER-INFO-SERVICE
+                fallbackuri: forward:/customerFallBackMethod
+        - id: SHOP-INFO-SERVICE
+          uri: lb://SHOP-INFO-SERVICE
+          predicates:
+            - Path=/shops/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: SHOP-INFO-SERVICE
+                fallbackuri: forward:/shopFallBackMethod
+                
+                
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+  
+    
