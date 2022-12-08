@@ -13,6 +13,14 @@ import com.easysearch.shop.shopinfo.pojo.ShopDetails;
 @AllArgsConstructor
 @ToString
 public class ResponseTemplateVo {
-	private CustomerDetails customerDetails;
-	private ShopDetails shopDetails;
+	
+	private String customerName;
+	private String customerAddress;
+	private String mobileNumber;
+	private String shopName;
+	private String shopAddress;
+	private String cityName;
+	private String distName;
+	private String stateName;
+	private long ownerId;
 }

@@ -20,12 +20,12 @@ public class TalukaResource {
 	@Autowired
 	private TalukaDao talukaDao;
 	
-	@GetMapping("/taluka/{talukaId}")
-	public @ResponseBody Taluka getTalukaDetails(@PathVariable int talukaId)
+	@GetMapping("/taluka/{talukaName}")
+	public @ResponseBody Taluka getTalukaDetails(@PathVariable String talukaName)
 	{
-		log.info("In TalukaResource->getTalukaDetails method id="+talukaId);
+		log.info("In TalukaResource->getTalukaDetails method id="+talukaName);
 		
-		return talukaDao.findById(talukaId).orElse(new Taluka());
+		return talukaDao.findByName(talukaName);
 	}
 	
 	@PostMapping("/taluka")
